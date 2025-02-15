@@ -2,9 +2,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
 
 public class MySeleniumTest {
 
@@ -14,14 +17,14 @@ public class MySeleniumTest {
         final WebDriver driver = new ChromeDriver();
         try {
             driver.get("https://yltrue.com/automation/");
-            // TODO - Wait for username field appears
 
             // log in
             login(driver, "admin", "admin");
 
-            // TODO - wait for the DO1 button to appear.
-            WebElement doOneButton = driver.findElement(By.id("do1"));
+            WebElement doOneButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.id("do1")));
             doOneButton.click();
+
             // TODO - Find a better way to get attribute "disabled"
             String doOneButtonDisabled = doOneButton.getAttribute("disabled");
             Assert.assertNotNull(doOneButtonDisabled);
@@ -41,8 +44,6 @@ public class MySeleniumTest {
         try
         {
             driver.get("https://yltrue.com/automation/");
-            // TODO - Wait for username field appears
-
             // log in
             login(driver, "admin", "admin");
 
@@ -68,10 +69,14 @@ public class MySeleniumTest {
     }
 
     private void login(WebDriver driver, String username, String password) {
-        WebElement usernameField = driver.findElement(By.name("username"));
+        WebElement usernameField = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
+        WebElement passwordField = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
+
         usernameField.sendKeys(username);
-        WebElement passwordField = driver.findElement(By.name("password"));
         passwordField.sendKeys(password);
+
         WebElement loginButton = driver.findElement(By.name("login"));
         loginButton.click();
     }
