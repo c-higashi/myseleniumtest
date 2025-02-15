@@ -17,12 +17,7 @@ public class MySeleniumTest {
             // TODO - Wait for username field appears
 
             // log in
-            WebElement usernameField = driver.findElement(By.name("username"));
-            usernameField.sendKeys("admin");
-            WebElement passwordField = driver.findElement(By.name("password"));
-            passwordField.sendKeys("admin");
-            WebElement loginButton = driver.findElement(By.name("login"));
-            loginButton.click();
+            login(driver, "admin", "admin");
 
             // TODO - wait for the DO1 button to appear.
             WebElement doOneButton = driver.findElement(By.id("do1"));
@@ -49,12 +44,7 @@ public class MySeleniumTest {
             // TODO - Wait for username field appears
 
             // log in
-            WebElement usernameField = driver.findElement(By.name("username"));
-            usernameField.sendKeys("admin");
-            WebElement passwordField = driver.findElement(By.name("password"));
-            passwordField.sendKeys("admin");
-            WebElement loginButton = driver.findElement(By.name("login"));
-            loginButton.click();
+            login(driver, "admin", "admin");
 
             WebElement textFontSize = driver.findElement(By.id("textFontSize"));
             String fontSize = textFontSize.getAttribute("style");
@@ -75,5 +65,14 @@ public class MySeleniumTest {
         finally {
             driver.close();
         }
+    }
+
+    private void login(WebDriver driver, String username, String password) {
+        WebElement usernameField = driver.findElement(By.name("username"));
+        usernameField.sendKeys(username);
+        WebElement passwordField = driver.findElement(By.name("password"));
+        passwordField.sendKeys(password);
+        WebElement loginButton = driver.findElement(By.name("login"));
+        loginButton.click();
     }
 }
