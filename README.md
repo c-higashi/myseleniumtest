@@ -2,5 +2,5 @@
 
 To run the test please run
 ```bash
-./gradlew test
+./gradlew --rerun-tasks test
 ```
