@@ -78,37 +78,39 @@ public class MySeleniumTest {
     void testChangeColor()
     {
         driver.get("https://yltrue.com/automation/");
-        // log in
         login("admin", "admin");
 
-        WebElement formToColorize = driver.findElement(By.id("formToColorize"));
-        String bgColor = formToColorize.getAttribute("style");
-        Assert.assertTrue(bgColor.isEmpty());
-
-        // Type "red" in the Background color text field.
         WebElement bgColorTextField = driver.findElement(By.id("bgColor"));
         WebElement setBgColorBtn = driver.findElement(By.id("btnSetBgColor"));
-        bgColorTextField.sendKeys("red");
-        setBgColorBtn.click();
+        try {
+            WebElement formToColorize = driver.findElement(By.id("formToColorize"));
+            String bgColor = formToColorize.getAttribute("style");
+            Assert.assertTrue(bgColor.isEmpty());
 
-        // Verify that the background color is now red.
-        bgColor = formToColorize.getAttribute("style");
-        Assert.assertEquals(bgColor, "background: red;");
+            // Type "red" in the Background color text field.
+            bgColorTextField.sendKeys("red");
+            setBgColorBtn.click();
 
-        // Clear the Background color text field.
-        bgColorTextField.clear();
-        setBgColorBtn.click();
+            // Verify that the background color is now red.
+            bgColor = formToColorize.getAttribute("style");
+            Assert.assertEquals(bgColor, "background: red;");
 
-        // Now change the color to blue.
-        bgColorTextField.sendKeys("blue");
-        setBgColorBtn.click();
+            // Clear the Background color text field.
+            bgColorTextField.clear();
+            setBgColorBtn.click();
 
-        // Verify that the background color is now blue.
-        bgColor = formToColorize.getAttribute("style");
-        Assert.assertEquals(bgColor, "background: blue;");
+            // Now change the color to blue.
+            bgColorTextField.sendKeys("blue");
+            setBgColorBtn.click();
 
-        bgColorTextField.clear();
-        setBgColorBtn.click();
+            // Verify that the background color is now blue.
+            bgColor = formToColorize.getAttribute("style");
+            Assert.assertEquals(bgColor, "background: blue;");
+        }
+        finally {
+            bgColorTextField.clear();
+            setBgColorBtn.click();
+        }
     }
 
     private void login(String username, String password) {
