@@ -84,5 +84,8 @@ public class MySeleniumTest {
 
         WebElement loginButton = driver.findElement(By.name("login"));
         loginButton.click();
+
+        String welcomeMsg = driver.findElement(By.id("welcomeMsg")).getText();
+        Assert.assertTrue(welcomeMsg.contains("Welcome to the Main page!"));
     }
 }
