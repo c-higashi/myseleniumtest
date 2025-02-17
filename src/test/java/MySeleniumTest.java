@@ -33,7 +33,7 @@ public class MySeleniumTest {
         // log in
         login("admin", "admin");
 
-        // Click DO1! button.
+        // Click the DO1! button.
         WebElement doOneButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.id("do1")));
         doOneButton.click();
@@ -42,7 +42,7 @@ public class MySeleniumTest {
         String doOneButtonDisabled = doOneButton.getAttribute("disabled");
         Assert.assertNotNull(doOneButtonDisabled);
 
-        // Click DO2! button.
+        // Click the DO2! button.
         WebElement doTwoButton = driver.findElement(By.id("do2"));
         doTwoButton.click();
         String doTwoButtonDisabled = doTwoButton.getAttribute("disabled");
@@ -50,7 +50,8 @@ public class MySeleniumTest {
     }
 
     @Test
-    void testChangeFontSize() {
+    void testChangeFontSize()
+    {
         driver.get("https://yltrue.com/automation/");
         // log in
         login("admin", "admin");
@@ -73,6 +74,43 @@ public class MySeleniumTest {
         Assert.assertEquals(fontSize, "font-size: 20px;");
     }
 
+    @Test
+    void testChangeColor()
+    {
+        driver.get("https://yltrue.com/automation/");
+        // log in
+        login("admin", "admin");
+
+        WebElement formToColorize = driver.findElement(By.id("formToColorize"));
+        String bgColor = formToColorize.getAttribute("style");
+        Assert.assertTrue(bgColor.isEmpty());
+
+        // Type "red" in the Background color text field.
+        WebElement bgColorTextField = driver.findElement(By.id("bgColor"));
+        WebElement setBgColorBtn = driver.findElement(By.id("btnSetBgColor"));
+        bgColorTextField.sendKeys("red");
+        setBgColorBtn.click();
+
+        // Verify that the background color is now red.
+        bgColor = formToColorize.getAttribute("style");
+        Assert.assertEquals(bgColor, "background: red;");
+
+        // Clear the Background color text field.
+        bgColorTextField.clear();
+        setBgColorBtn.click();
+
+        // Now change the color to blue.
+        bgColorTextField.sendKeys("blue");
+        setBgColorBtn.click();
+
+        // Verify that the background color is now blue.
+        bgColor = formToColorize.getAttribute("style");
+        Assert.assertEquals(bgColor, "background: blue;");
+
+        bgColorTextField.clear();
+        setBgColorBtn.click();
+    }
+
     private void login(String username, String password) {
         WebElement usernameField = (new WebDriverWait(driver,Duration.ofSeconds(5)))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
@@ -86,6 +124,6 @@ public class MySeleniumTest {
         loginButton.click();
 
         String welcomeMsg = driver.findElement(By.id("welcomeMsg")).getText();
-        Assert.assertTrue(welcomeMsg.contains("Welcome to the Main page!"));
+        Assert.assertTrue(welcomeMsg.contains("Welcome to the Main page!"), "Log in failed!");
     }
 }
