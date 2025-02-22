@@ -3,6 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
@@ -16,15 +17,17 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     private String username;
     private String password;
 
-    @Test
-    void testDoButtons()
+    @BeforeMethod
+    void beforeMethod()
     {
         readConfigProperties("config.properties");
         driver.get(url);
-
-        // log in
         login(username, password);
+    }
 
+    @Test
+    void testDoButtons()
+    {
         // Click the DO1! button.
         WebElement doOneButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.id("do1")));
@@ -44,10 +47,6 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     @Test
     void testChangeFontSize()
     {
-        driver.get("https://yltrue.com/automation/");
-        // log in
-        login("admin", "admin");
-
         // Verify the default font size.
         WebElement textFontSize = driver.findElement(By.id("textFontSize"));
         String fontSize = textFontSize.getAttribute("style");
@@ -69,9 +68,6 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     @Test
     void testChangeColor()
     {
-        driver.get("https://yltrue.com/automation/");
-        login("admin", "admin");
-
         WebElement bgColorTextField = driver.findElement(By.id("bgColor"));
         WebElement setBgColorBtn = driver.findElement(By.id("btnSetBgColor"));
         try {
