@@ -1,23 +1,29 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 public class MySeleniumTest extends SeleniumAbstractTest {
+
+    private String url;
+    private String username;
+    private String password;
 
     @Test
     void testDoButtons()
     {
-        driver.get("https://yltrue.com/automation/");
+        readConfigProperties("config.properties");
+        driver.get(url);
 
         // log in
-        login("admin", "admin");
+        login(username, password);
 
         // Click the DO1! button.
         WebElement doOneButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
@@ -96,6 +102,24 @@ public class MySeleniumTest extends SeleniumAbstractTest {
         finally {
             bgColorTextField.clear();
             setBgColorBtn.click();
+        }
+    }
+
+    void readConfigProperties(String fileName)
+    {
+        Properties properties = new Properties();
+        try
+        {
+            FileInputStream fis = new FileInputStream(fileName);
+            properties.load(fis);
+
+            url = properties.getProperty("exampleweburl");
+            username = properties.getProperty("username");
+            password = properties.getProperty("password");
+        }
+        catch (IOException e)
+        {
+            System.out.println("Reading the Config properties file failed!");
         }
     }
 
