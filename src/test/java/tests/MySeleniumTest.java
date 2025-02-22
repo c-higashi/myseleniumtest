@@ -1,3 +1,5 @@
+package tests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,6 +14,7 @@ import java.time.Duration;
 import java.util.Properties;
 
 import pages.LoginPage;
+import utils.SeleniumAbstractTest;
 
 public class MySeleniumTest extends SeleniumAbstractTest {
 
@@ -24,6 +27,7 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     @BeforeMethod
     void beforeMethod()
     {
+        System.out.println("child: beforeMethod");
         readConfigProperties("config.properties");
         driver.get(url);
 

@@ -1,3 +1,5 @@
+package utils;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
@@ -8,12 +10,12 @@ public abstract class SeleniumAbstractTest {
     protected WebDriver driver;
 
     @BeforeClass
-    void beforeClass() {
+    public void beforeClass() {
         driver = new ChromeDriver();
     }
 
     @AfterClass
-    void afterClass() {
+    public void afterClass() {
         driver.close();
     }
 }
