@@ -5,25 +5,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class MySeleniumTest {
-
-    private WebDriver driver;
-
-    @BeforeClass
-    void beforeClass() {
-        driver = new ChromeDriver();
-    }
-
-    @AfterClass
-    void afterClass() {
-        driver.close();
-    }
+public class MySeleniumTest extends SeleniumAbstractTest {
 
     @Test
     void testDoButtons()
