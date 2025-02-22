@@ -27,7 +27,6 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     @BeforeMethod
     void beforeMethod()
     {
-        System.out.println("child: beforeMethod");
         readConfigProperties("config.properties");
         driver.get(url);
 
