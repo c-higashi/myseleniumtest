@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MySeleniumTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-02-15T13:58:57" hostname="Chiekos-MacBook-Pro.local" time="4.438">
-  <properties/>
-  <testcase name="testDoButtons" classname="MySeleniumTest" time="4.438"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[Feb 15, 2025 10:58:59 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
-WARNING: Unable to find an exact match for CDP version 133, returning the closest version; found: 132; Please update to a Selenium version that supports CDP version 133
-]]></system-err>
-</testsuite>
