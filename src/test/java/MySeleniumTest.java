@@ -11,18 +11,24 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
+import pages.LoginPage;
+
 public class MySeleniumTest extends SeleniumAbstractTest {
 
     private String url;
     private String username;
     private String password;
 
+    private LoginPage loginPage;
+
     @BeforeMethod
     void beforeMethod()
     {
         readConfigProperties("config.properties");
         driver.get(url);
-        login(username, password);
+
+        loginPage = new LoginPage(driver);
+        loginPage.login(username, password);
     }
 
     @Test
@@ -117,21 +123,5 @@ public class MySeleniumTest extends SeleniumAbstractTest {
         {
             System.out.println("Reading the Config properties file failed!");
         }
-    }
-
-    private void login(String username, String password) {
-        WebElement usernameField = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
-        WebElement passwordField = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
-
-        usernameField.sendKeys(username);
-        passwordField.sendKeys(password);
-
-        WebElement loginButton = driver.findElement(By.name("login"));
-        loginButton.click();
-
-        String welcomeMsg = driver.findElement(By.id("welcomeMsg")).getText();
-        Assert.assertTrue(welcomeMsg.contains("Welcome to the Main page!"), "Log in failed!");
     }
 }
