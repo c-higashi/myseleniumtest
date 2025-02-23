@@ -5,9 +5,27 @@ I recently had to write Java Selenium tests for the first time in a decade.  I w
 
 So I created a one-stop shop Java Selenium project that people can just clone and set up everything and start writing the tests.  
 
-To run the tests please run the following:
+### Prerequisite
+* Java is installed.
+
+### Quick Start
+Please run the following to download the project:
 ```bash
 git clone https://github.com/c-higashi/myseleniumtest.git
 cd myseleniumtest
+```
+
+To run the example tests (in `src/test/java/tests/MySeleniumTest.java`), please run the following:
+```bash
 ./gradlew --rerun-tasks clean test
 ```
+* To start writing your first test, you just have to extend `utils/SeleniumAbstractTest.java`.  Please refer to `src/test/java/tests/MySeleniumTest.java` for an example.
+* Please refer to `src/main/java/pages/LoginPage.java` for a Page Object.
+
+### NOTES
+* Logging is provided (though still WIP).
+* To change the versions for Selenium and other libraries, please update `build.gradle.kts`. 
+
+
+
+
