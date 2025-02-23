@@ -1,7 +1,5 @@
 package tests;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,7 +7,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -53,7 +50,8 @@ public class MySeleniumTest extends SeleniumAbstractTest {
         Assert.assertNotNull(doOneButtonDisabled);
 
         // Click the DO2! button.
-        WebElement doTwoButton = driver.findElement(By.id("do2"));
+        WebElement doTwoButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("do2")));
         doTwoButton.click();
         String doTwoButtonDisabled = doTwoButton.getAttribute("disabled");
         Assert.assertNotNull(doTwoButtonDisabled);
@@ -63,18 +61,21 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     void testChangeFontSize()
     {
         // Verify the default font size.
-        WebElement textFontSize = driver.findElement(By.id("textFontSize"));
+        WebElement textFontSize = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("textFontSize")));
         String fontSize = textFontSize.getAttribute("style");
         Assert.assertEquals(fontSize, "font-size: 20px;");
 
         // Increase the font size.
-        WebElement increaseFontSizeButton = driver.findElement(By.id("btnIncreaseFont"));
+        WebElement increaseFontSizeButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("btnIncreaseFont")));
         increaseFontSizeButton.click();
         fontSize = textFontSize.getAttribute("style");
         Assert.assertEquals(fontSize, "font-size: 23px;");
 
         // Decrease the font size.
-        WebElement decreaseFontSizeButton = driver.findElement(By.id("btnDecreaseFont"));
+        WebElement decreaseFontSizeButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("btnDecreaseFont")));
         decreaseFontSizeButton.click();
         fontSize = textFontSize.getAttribute("style");
         Assert.assertEquals(fontSize, "font-size: 20px;");
@@ -83,10 +84,13 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     @Test
     void testChangeColor()
     {
-        WebElement bgColorTextField = driver.findElement(By.id("bgColor"));
-        WebElement setBgColorBtn = driver.findElement(By.id("btnSetBgColor"));
+        WebElement bgColorTextField = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("bgColor")));
+        WebElement setBgColorBtn = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("btnSetBgColor")));
         try {
-            WebElement formToColorize = driver.findElement(By.id("formToColorize"));
+            WebElement formToColorize = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                    .until(ExpectedConditions.visibilityOfElementLocated(By.id("formToColorize")));
             String bgColor = formToColorize.getAttribute("style");
             Assert.assertTrue(bgColor.isEmpty());
 
