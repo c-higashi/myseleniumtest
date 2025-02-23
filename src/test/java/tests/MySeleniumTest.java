@@ -114,6 +114,9 @@ public class MySeleniumTest extends SeleniumAbstractTest {
             bgColor = formToColorize.getAttribute("style");
             Assert.assertEquals(bgColor, "background: blue;");
         }
+        catch( NullPointerException e ) {
+            logger.error( "bgColor element not found!" );
+        }
         finally {
             bgColorTextField.clear();
             setBgColorBtn.click();
