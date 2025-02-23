@@ -1,5 +1,7 @@
 package tests;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,6 +20,8 @@ import pages.LoginPage;
 import utils.SeleniumAbstractTest;
 
 public class MySeleniumTest extends SeleniumAbstractTest {
+
+    private static final Logger logger = LogManager.getLogger();
 
     private String url;
     private String username;
@@ -42,7 +47,6 @@ public class MySeleniumTest extends SeleniumAbstractTest {
                 .until(ExpectedConditions.visibilityOfElementLocated(By.id("do1")));
         doOneButton.click();
 
-        // TODO - Find a better way to get attribute "disabled"
         String doOneButtonDisabled = doOneButton.getAttribute("disabled");
         Assert.assertNotNull(doOneButtonDisabled);
 
@@ -124,7 +128,7 @@ public class MySeleniumTest extends SeleniumAbstractTest {
         }
         catch (IOException e)
         {
-            System.out.println("Reading the Config properties file failed!");
+            logger.error("Reading the Config properties file failed!");
         }
     }
 }
