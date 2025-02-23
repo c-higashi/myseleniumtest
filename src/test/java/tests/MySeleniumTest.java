@@ -21,8 +21,6 @@ import utils.SeleniumAbstractTest;
 
 public class MySeleniumTest extends SeleniumAbstractTest {
 
-    private static final Logger logger = LogManager.getLogger();
-
     private String url;
     private String username;
     private String password;
@@ -32,6 +30,10 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     @BeforeMethod
     void beforeMethod()
     {
+        logger.debug("beforeMethod()");
+        logger.info("beforeMethod()");
+        logger.warn("beforeMethod()");
+        logger.error("beforeMethod()");
         readConfigProperties("config.properties");
         driver.get(url);
 
