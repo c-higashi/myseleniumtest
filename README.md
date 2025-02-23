@@ -23,6 +23,7 @@ To run the example tests (in `src/test/java/tests/MySeleniumTest.java`), please 
 * Please refer to `src/main/java/pages/LoginPage.java` for a Page Object example.
 
 ### NOTES
+* Tests can currently only run in Chrome.
 * Logging is provided (though still WIP).
 * To change the versions for Selenium and other libraries, please update `build.gradle.kts`. 
 

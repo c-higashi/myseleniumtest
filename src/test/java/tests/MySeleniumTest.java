@@ -27,10 +27,6 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     @BeforeMethod
     void beforeMethod()
     {
-        logger.debug("beforeMethod()");
-        logger.info("beforeMethod()");
-        logger.warn("beforeMethod()");
-        logger.error("beforeMethod()");
         readConfigProperties("config.properties");
         driver.get(url);
 
