@@ -3,7 +3,7 @@
 ### Java Selenium template project that will allow you to start writing your UI automation right away.
 I recently had to write Java Selenium tests for the first time in a decade.  I was surprised how Selenium documentation is still not so user-friendly, and it took me a lot of time just to set up the project.
 
-So I created a one-stop shop Java Selenium project that you can just clone and set up everything and start writing the tests.  
+So I created a one-stop shop Java Selenium project that you can just clone and start writing the UI automated tests.  
 
 ### Prerequisite
 * Java is installed.
