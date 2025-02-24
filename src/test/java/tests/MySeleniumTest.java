@@ -53,24 +53,15 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     void testChangeFontSize()
     {
         // Verify the default font size.
-        WebElement textFontSize = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id("textFontSize")));
-        String fontSize = textFontSize.getAttribute("style");
-        Assert.assertEquals(fontSize, "font-size: 20px;");
+        Assert.assertEquals(mainPage.getFontSizeAttribute(), "font-size: 20px;");
 
         // Increase the font size.
-        WebElement increaseFontSizeButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id("btnIncreaseFont")));
-        increaseFontSizeButton.click();
-        fontSize = textFontSize.getAttribute("style");
-        Assert.assertEquals(fontSize, "font-size: 23px;");
+        mainPage.increaseFontSize();
+        Assert.assertEquals(mainPage.getFontSizeAttribute(), "font-size: 23px;");
 
         // Decrease the font size.
-        WebElement decreaseFontSizeButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id("btnDecreaseFont")));
-        decreaseFontSizeButton.click();
-        fontSize = textFontSize.getAttribute("style");
-        Assert.assertEquals(fontSize, "font-size: 20px;");
+        mainPage.decreaseFontSize();
+        Assert.assertEquals(mainPage.getFontSizeAttribute(), "font-size: 20px;");
     }
 
     @Test
