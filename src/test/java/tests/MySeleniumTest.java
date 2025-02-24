@@ -3,62 +3,73 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Properties;
-
 import pages.LoginPage;
 import pages.MainPage;
 import utils.ReadConfigFiles;
 import utils.SeleniumAbstractTest;
 
+import java.util.Properties;
+
+/**
+ * Example Selenium test that asserts functionality of the website https://yltrue.com/automation
+ */
 public class MySeleniumTest extends SeleniumAbstractTest {
 
     private LoginPage loginPage;
     private MainPage mainPage;
-    private ReadConfigFiles readConfigFiles;
 
+    /**
+     * Initializes this test's page object models and performs a login with the configured username and password
+     */
     @BeforeMethod
-    void beforeMethod()
-    {
-        readConfigFiles = new ReadConfigFiles();
+    void beforeMethod() {
+        ReadConfigFiles readConfigFiles = new ReadConfigFiles();
         Properties properties = readConfigFiles.readConfigProperties("config.properties");
-        driver.get( properties.getProperty("exampleweburl") );
+
+        driver.get(properties.getProperty("exampleweburl"));
 
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
+
         loginPage.login(properties.getProperty("username"), properties.getProperty("password"));
     }
 
+    /**
+     * Asserts that clicking the DO1! and DO2! buttons become disabled
+     */
     @Test
-    void testDoButtons()
-    {
+    void testDoButtons() {
         // Click the DO1! button.
-        mainPage.clickDoButton( mainPage.getDoOneButtonLocator() );
-        Assert.assertTrue(mainPage.doButtonDisabled( mainPage.getDoOneButtonLocator() ) );
+        mainPage.clickDoButton(mainPage.getDoOneButtonLocator());
+        Assert.assertTrue(mainPage.doButtonDisabled(mainPage.getDoOneButtonLocator()));
 
         // Click the DO2! button.
-        mainPage.clickDoButton( mainPage.getDoTwoLocatorLocator() );
-        Assert.assertTrue(mainPage.doButtonDisabled( mainPage.getDoTwoLocatorLocator() ) );
+        mainPage.clickDoButton(mainPage.getDoTwoButtonLocator());
+        Assert.assertTrue(mainPage.doButtonDisabled(mainPage.getDoTwoButtonLocator()));
     }
 
+    /**
+     * Asserts that the font size increase and decrease buttons work as expected
+     */
     @Test
-    void testChangeFontSize()
-    {
+    void testChangeFontSize() {
         // Verify the default font size.
         Assert.assertEquals(mainPage.getFontSizeAttribute(), "font-size: 20px;");
 
         // Increase the font size.
-        mainPage.changeFontSize( mainPage.getIncreaseFontSizeButtonLocator() );
+        mainPage.changeFontSize(mainPage.getIncreaseFontSizeButtonLocator());
         Assert.assertEquals(mainPage.getFontSizeAttribute(), "font-size: 23px;");
 
         // Decrease the font size.
-        mainPage.changeFontSize( mainPage.getDecreaseFontSizeButtonLocator() );
+        mainPage.changeFontSize(mainPage.getDecreaseFontSizeButtonLocator());
         Assert.assertEquals(mainPage.getFontSizeAttribute(), "font-size: 20px;");
     }
 
+    /**
+     * Asserts that the "SET BACKGROUND COLOR" button works as expected
+     */
     @Test
-    void testChangeColor()
-    {
+    void testSetBackgroundColor() {
         try {
             // Verify no color at the beginning.
             Assert.assertTrue(mainPage.getBackgroundColor().isEmpty());
@@ -77,8 +88,7 @@ public class MySeleniumTest extends SeleniumAbstractTest {
 
             // Verify that the background color is now blue.
             Assert.assertEquals(mainPage.getBackgroundColor(), "background: blue;");
-        }
-        finally {
+        } finally {
             mainPage.clearBackgroundColor();
         }
     }
