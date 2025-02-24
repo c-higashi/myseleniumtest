@@ -51,11 +51,11 @@ public class MySeleniumTest extends SeleniumAbstractTest {
         Assert.assertEquals(mainPage.getFontSizeAttribute(), "font-size: 20px;");
 
         // Increase the font size.
-        mainPage.increaseFontSize();
+        mainPage.changeFontSize( mainPage.getIncreaseFontSizeButtonLocator() );
         Assert.assertEquals(mainPage.getFontSizeAttribute(), "font-size: 23px;");
 
         // Decrease the font size.
-        mainPage.decreaseFontSize();
+        mainPage.changeFontSize( mainPage.getDecreaseFontSizeButtonLocator() );
         Assert.assertEquals(mainPage.getFontSizeAttribute(), "font-size: 20px;");
     }
 

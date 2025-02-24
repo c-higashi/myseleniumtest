@@ -24,7 +24,7 @@ To run the example tests (in `src/test/java/tests/MySeleniumTest.java`), please 
 
 ### NOTES
 * Tests can currently only run in Chrome.
-* Logging is provided (though still WIP).
+* Logging is provided in  `src/test/java/utils/SeleniumAbstractTest.java` (though still WIP).
 * To change the versions for Selenium and other libraries, please update `build.gradle.kts`.
 * The example tests are executed against https://yltrue.com/automation.
 

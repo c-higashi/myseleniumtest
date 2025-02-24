@@ -19,11 +19,10 @@ public class MainPage {
     private final By btnSetBgColorLocator = By.id("btnSetBgColor");
     private final By formToColorizeLocator = By.id("formToColorize");
 
-
     public MainPage( WebDriver driver ) {
         this.driver = driver;
     }
-    
+
     public boolean doButtonDisabled( By doButtonLocator ) {
         WebElement doOneButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
                 .until(ExpectedConditions.visibilityOfElementLocated(doButtonLocator));
@@ -56,16 +55,18 @@ public class MainPage {
         return textFontSize.getAttribute("style");
     }
 
-    public void increaseFontSize() {
-        WebElement increaseFontSizeButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(increaseFontSizeButtonLocator));
-        increaseFontSizeButton.click();
+    public void changeFontSize( By changeFontSizeButtonLocator ) {
+        WebElement changeFontSizeButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(changeFontSizeButtonLocator));
+        changeFontSizeButton.click();
     }
 
-    public void decreaseFontSize() {
-        WebElement decreaseFontSizeButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(decreaseFontSizeButtonLocator));
-        decreaseFontSizeButton.click();
+    public By getIncreaseFontSizeButtonLocator() {
+        return increaseFontSizeButtonLocator;
+    }
+
+    public By getDecreaseFontSizeButtonLocator() {
+        return decreaseFontSizeButtonLocator;
     }
 
     public void changeBackgroundColor( String color ) {
@@ -93,5 +94,4 @@ public class MainPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(formToColorizeLocator));
         return formToColorize.getAttribute("style");
     }
-
 }

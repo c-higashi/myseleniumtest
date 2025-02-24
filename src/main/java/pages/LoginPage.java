@@ -29,7 +29,8 @@ public class LoginPage {
         WebElement loginButton = driver.findElement(By.name("login"));
         loginButton.click();
 
-        String welcomeMsg = driver.findElement(By.id("welcomeMsg")).getText();
+        String welcomeMsg = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("welcomeMsg"))).getText();
         Assert.assertTrue(welcomeMsg.contains("Welcome to the Main page!"), "Log in failed!");
     }
 }
