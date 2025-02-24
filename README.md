@@ -20,7 +20,7 @@ To run the example tests (in `src/test/java/tests/MySeleniumTest.java`), please 
 ./gradlew --rerun-tasks clean test
 ```
 * To start writing your first test, you just have to extend `utils/SeleniumAbstractTest.java`.  Please refer to `src/test/java/tests/MySeleniumTest.java` for an example.
-* Please refer to `src/main/java/pages/LoginPage.java` for a Page Object example.
+* Please refer to the classes in `src/main/java/pages/` for Page Objects example.
 
 ### NOTES
 * Tests can currently only run in Chrome.
