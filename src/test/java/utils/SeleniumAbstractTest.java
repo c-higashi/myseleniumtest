@@ -1,23 +1,31 @@
 package utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+/**
+ * Base cass for Selenium-based UI Automation tests
+ */
 public abstract class SeleniumAbstractTest {
 
+    /**
+     * WebDriver that can be used by the implementing class's tests.
+     */
     protected WebDriver driver;
-    protected static final Logger logger = LogManager.getLogger();
 
-
+    /**
+     * Initializes this class's driver.
+     */
     @BeforeClass
     public void beforeClass() {
         driver = new ChromeDriver();
     }
 
+    /**
+     * Closes this class's driver.
+     */
     @AfterClass
     public void afterClass() {
         driver.close();
