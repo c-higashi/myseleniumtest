@@ -1,33 +1,39 @@
 # myseleniumtest
 
-### Java Selenium template project that will allow you to start writing your UI automation right away.
+## Overview
+
+This is Java Selenium template project that will allow you to start writing your UI automation right away.
+
+## Motivation
 I recently had to write Java Selenium tests for the first time in a decade.  I was surprised how Selenium documentation is still not so user-friendly, and it took me a lot of time just to set up the project.
 
-So I created a one-stop shop Java Selenium project that you can just clone and start writing the UI automated tests.  
+So I created a one-stop shop Java Selenium project that you can just clone and start writing the UI automated tests.
 
-### Prerequisite
-* Java is installed.
+## Quick Start
 
-### Quick Start
-Please run the following to download the project:
+### Prerequisites
+* Git and Java are installed.
+
+1. Run the following to download the project:
 ```bash
 git clone https://github.com/c-higashi/myseleniumtest.git
 cd myseleniumtest
 ```
 
-To run the example tests (in `src/test/java/tests/MySeleniumTest.java`), please run the following:
+2. Run the example tests (in `src/test/java/tests/MySeleniumTest.java`), please run the following:
 ```bash
 ./gradlew --rerun-tasks clean test
 ```
-* To start writing your first test, you just have to extend `utils/SeleniumAbstractTest.java`.  Please refer to `src/test/java/tests/MySeleniumTest.java` for an example.
-* Please refer to the classes in `src/main/java/pages/` for Page Objects example.
+Note: The example tests are executed against https://yltrue.com/automation.
+
+## Creating a New Test
+To start writing your first test, extend `utils/SeleniumAbstractTest.java`. 
+
+For examples, please refer to
+* `src/test/java/tests/MySeleniumTest.java`
+* classes under `src/main/java/pages/` for Page Object Model examples
 
 ### NOTES
-* Tests can currently only run in Chrome.
+* Tests currently only run in Chrome.
 * Logging is provided in  `src/test/java/utils/SeleniumAbstractTest.java` (though still WIP).
 * To change the versions for Selenium and other libraries, please update `build.gradle.kts`.
-* The example tests are executed against https://yltrue.com/automation.
-
-
-
-
