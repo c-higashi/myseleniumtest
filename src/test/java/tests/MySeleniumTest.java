@@ -81,9 +81,6 @@ public class MySeleniumTest extends SeleniumAbstractTest {
             // Verify that the background color is now blue.
             Assert.assertEquals(mainPage.getBackgroundColor(), "background: blue;");
         }
-        catch( NullPointerException e ) {
-            logger.error( "bgColor element not found!" );
-        }
         finally {
             mainPage.clearBackgroundColor();
         }

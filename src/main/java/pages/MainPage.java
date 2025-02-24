@@ -23,10 +23,16 @@ public class MainPage {
         this.driver = driver;
     }
 
+    /**
+     * Returns true if the button is disabled.
+     *
+     * @param doButtonLocator
+     * @return
+     */
     public boolean doButtonDisabled( By doButtonLocator ) {
-        WebElement doOneButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
+        WebElement doButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
                 .until(ExpectedConditions.visibilityOfElementLocated(doButtonLocator));
-        String doOneButtonDisabled = doOneButton.getAttribute("disabled");
+        String doOneButtonDisabled = doButton.getAttribute("disabled");
         if (doOneButtonDisabled != null || !doOneButtonDisabled.trim().isEmpty()) {
             return true;
         }
@@ -35,6 +41,10 @@ public class MainPage {
         }
     }
 
+    /**
+     * Clicks DO1! or DO2! button.
+     * @param doButtonLocator
+     */
     public void clickDoButton( By doButtonLocator ) {
         WebElement doButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
                 .until(ExpectedConditions.visibilityOfElementLocated(doButtonLocator));
