@@ -23,16 +23,10 @@ public class MainPage {
     public MainPage( WebDriver driver ) {
         this.driver = driver;
     }
-
-    public void clickDoOneButton() {
+    
+    public boolean doButtonDisabled( By doButtonLocator ) {
         WebElement doOneButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(doOneLocator));
-        doOneButton.click();
-    }
-
-    public boolean doOneButtonDisabled() {
-        WebElement doOneButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(doOneLocator));
+                .until(ExpectedConditions.visibilityOfElementLocated(doButtonLocator));
         String doOneButtonDisabled = doOneButton.getAttribute("disabled");
         if (doOneButtonDisabled != null || !doOneButtonDisabled.trim().isEmpty()) {
             return true;
@@ -42,22 +36,18 @@ public class MainPage {
         }
     }
 
-    public void clickDoTwoButton() {
-        WebElement doOneButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(doTwoLocator));
-        doOneButton.click();
+    public void clickDoButton( By doButtonLocator ) {
+        WebElement doButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(doButtonLocator));
+        doButton.click();
     }
 
-    public boolean doTwoButtonDisabled() {
-        WebElement doOneButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(doTwoLocator));
-        String doOneButtonDisabled = doOneButton.getAttribute("disabled");
-        if (doOneButtonDisabled != null || !doOneButtonDisabled.trim().isEmpty()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    public By getDoOneButtonLocator() {
+        return doOneLocator;
+    }
+
+    public By getDoTwoLocatorLocator() {
+        return doTwoLocator;
     }
 
     public String getFontSizeAttribute() {

@@ -36,12 +36,12 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     void testDoButtons()
     {
         // Click the DO1! button.
-        mainPage.clickDoOneButton();
-        Assert.assertTrue(mainPage.doOneButtonDisabled());
+        mainPage.clickDoButton( mainPage.getDoOneButtonLocator() );
+        Assert.assertTrue(mainPage.doButtonDisabled( mainPage.getDoOneButtonLocator() ) );
 
         // Click the DO2! button.
-        mainPage.clickDoTwoButton();
-        Assert.assertTrue(mainPage.doTwoButtonDisabled());
+        mainPage.clickDoButton( mainPage.getDoTwoLocatorLocator() );
+        Assert.assertTrue(mainPage.doButtonDisabled( mainPage.getDoTwoLocatorLocator() ) );
     }
 
     @Test
