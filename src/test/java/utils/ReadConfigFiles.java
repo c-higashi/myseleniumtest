@@ -1,24 +1,21 @@
 package utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.Properties;
 
+/**
+ * Utility for reading in a configuration properties file
+ */
 public class ReadConfigFiles {
-
-    protected static final Logger logger = LogManager.getLogger();
-
     public Properties readConfigProperties(String fileName) {
-        Properties properties = new Properties();
-        try {
-            FileInputStream fis = new FileInputStream(fileName);
+        try (FileInputStream fis = new FileInputStream(fileName)) {
+            Properties properties = new Properties();
             properties.load(fis);
+            return properties;
         } catch (IOException e) {
-            logger.error( "Failed to read the properties file!" );
+            throw new UncheckedIOException("Failed to read the configuration properties file: " + fileName, e);
         }
-        return properties;
     }
 }
