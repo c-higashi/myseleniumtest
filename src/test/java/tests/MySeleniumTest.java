@@ -14,6 +14,7 @@ import java.time.Duration;
 import java.util.Properties;
 
 import pages.LoginPage;
+import pages.MainPage;
 import utils.SeleniumAbstractTest;
 
 public class MySeleniumTest extends SeleniumAbstractTest {
@@ -23,6 +24,7 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     private String password;
 
     private LoginPage loginPage;
+    private MainPage mainPage;
 
     @BeforeMethod
     void beforeMethod()
@@ -31,6 +33,7 @@ public class MySeleniumTest extends SeleniumAbstractTest {
         driver.get(url);
 
         loginPage = new LoginPage(driver);
+        mainPage = new MainPage(driver);
         loginPage.login(username, password);
     }
 
@@ -38,19 +41,12 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     void testDoButtons()
     {
         // Click the DO1! button.
-        WebElement doOneButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id("do1")));
-        doOneButton.click();
-
-        String doOneButtonDisabled = doOneButton.getAttribute("disabled");
-        Assert.assertNotNull(doOneButtonDisabled);
+        mainPage.clickDoOneButton();
+        Assert.assertTrue(mainPage.doOneButtonDisabled());
 
         // Click the DO2! button.
-        WebElement doTwoButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id("do2")));
-        doTwoButton.click();
-        String doTwoButtonDisabled = doTwoButton.getAttribute("disabled");
-        Assert.assertNotNull(doTwoButtonDisabled);
+        mainPage.clickTwoButton();
+        Assert.assertTrue(mainPage.doTwoButtonDisabled());
     }
 
     @Test
