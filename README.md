@@ -20,7 +20,7 @@ git clone https://github.com/c-higashi/myseleniumtest.git
 cd myseleniumtest
 ```
 
-2. Run the example tests (in `src/test/java/tests/MySeleniumTest.java`), please run the following:
+2. To run the example tests (in `src/test/java/tests/MySeleniumTest.java`), please run the following:
 ```bash
 ./gradlew --rerun-tasks clean test
 ```
@@ -30,10 +30,10 @@ Note: The example tests are executed against https://yltrue.com/automation.
 To start writing your first test, extend `utils/SeleniumAbstractTest.java`. 
 
 For examples, please refer to
-* `src/test/java/tests/MySeleniumTest.java`
+* `src/test/java/tests/MySeleniumTest.java` for how to write your tests
 * classes under `src/main/java/pages/` for Page Object Model examples
 
 ### NOTES
 * Tests currently only run in Chrome.
-* Logging is provided in  `src/test/java/utils/SeleniumAbstractTest.java` (though still WIP).
+* Logging for tests is provided in  `src/test/java/utils/SeleniumAbstractTest.java` (though still WIP).
 * To change the versions for Selenium and other libraries, please update `build.gradle.kts`.
