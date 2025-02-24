@@ -4,32 +4,29 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 import pages.LoginPage;
 import pages.MainPage;
+import utils.ReadConfigFiles;
 import utils.SeleniumAbstractTest;
 
 public class MySeleniumTest extends SeleniumAbstractTest {
 
-    private String url;
-    private String username;
-    private String password;
-
     private LoginPage loginPage;
     private MainPage mainPage;
+    private ReadConfigFiles readConfigFiles;
 
     @BeforeMethod
     void beforeMethod()
     {
-        readConfigProperties("config.properties");
-        driver.get(url);
+        readConfigFiles = new ReadConfigFiles();
+        Properties properties = readConfigFiles.readConfigProperties("config.properties");
+        driver.get( properties.getProperty("exampleweburl") );
 
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
-        loginPage.login(username, password);
+        loginPage.login(properties.getProperty("username"), properties.getProperty("password"));
     }
 
     @Test
@@ -83,24 +80,6 @@ public class MySeleniumTest extends SeleniumAbstractTest {
         }
         finally {
             mainPage.clearBackgroundColor();
-        }
-    }
-
-    void readConfigProperties(String fileName)
-    {
-        Properties properties = new Properties();
-        try
-        {
-            FileInputStream fis = new FileInputStream(fileName);
-            properties.load(fis);
-
-            url = properties.getProperty("exampleweburl");
-            username = properties.getProperty("username");
-            password = properties.getProperty("password");
-        }
-        catch (IOException e)
-        {
-            logger.error("Reading the Config properties file failed!");
         }
     }
 }
