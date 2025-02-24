@@ -42,7 +42,7 @@ public class MainPage {
         }
     }
 
-    public void clickTwoButton() {
+    public void clickDoTwoButton() {
         WebElement doOneButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
                 .until(ExpectedConditions.visibilityOfElementLocated(doTwoLocator));
         doOneButton.click();
