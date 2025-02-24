@@ -67,42 +67,30 @@ public class MySeleniumTest extends SeleniumAbstractTest {
     @Test
     void testChangeColor()
     {
-        WebElement bgColorTextField = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id("bgColor")));
-        WebElement setBgColorBtn = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id("btnSetBgColor")));
         try {
-            WebElement formToColorize = (new WebDriverWait(driver,Duration.ofSeconds(5)))
-                    .until(ExpectedConditions.visibilityOfElementLocated(By.id("formToColorize")));
-            String bgColor = formToColorize.getAttribute("style");
-            Assert.assertTrue(bgColor.isEmpty());
+            // Verify no color at the beginning.
+            Assert.assertTrue(mainPage.getBackgroundColor().isEmpty());
 
             // Type "red" in the Background color text field.
-            bgColorTextField.sendKeys("red");
-            setBgColorBtn.click();
+            mainPage.changeBackgroundColor("red");
 
             // Verify that the background color is now red.
-            bgColor = formToColorize.getAttribute("style");
-            Assert.assertEquals(bgColor, "background: red;");
+            Assert.assertEquals(mainPage.getBackgroundColor(), "background: red;");
 
             // Clear the Background color text field.
-            bgColorTextField.clear();
-            setBgColorBtn.click();
+            mainPage.clearBackgroundColor();
 
             // Now change the color to blue.
-            bgColorTextField.sendKeys("blue");
-            setBgColorBtn.click();
+            mainPage.changeBackgroundColor("blue");
 
             // Verify that the background color is now blue.
-            bgColor = formToColorize.getAttribute("style");
-            Assert.assertEquals(bgColor, "background: blue;");
+            Assert.assertEquals(mainPage.getBackgroundColor(), "background: blue;");
         }
         catch( NullPointerException e ) {
             logger.error( "bgColor element not found!" );
         }
         finally {
-            bgColorTextField.clear();
-            setBgColorBtn.click();
+            mainPage.clearBackgroundColor();
         }
     }
 

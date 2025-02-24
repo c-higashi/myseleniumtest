@@ -15,6 +15,9 @@ public class MainPage {
     private final By textFontSizeLocator = By.id("textFontSize");
     private final By increaseFontSizeButtonLocator = By.id("btnIncreaseFont");
     private final By decreaseFontSizeButtonLocator = By.id("btnDecreaseFont");
+    private final By bgColorTextFieldLocator = By.id("bgColor");
+    private final By btnSetBgColorLocator = By.id("btnSetBgColor");
+    private final By formToColorizeLocator = By.id("formToColorize");
 
 
     public MainPage( WebDriver driver ) {
@@ -73,6 +76,32 @@ public class MainPage {
         WebElement decreaseFontSizeButton = (new WebDriverWait(driver,Duration.ofSeconds(5)))
                 .until(ExpectedConditions.visibilityOfElementLocated(decreaseFontSizeButtonLocator));
         decreaseFontSizeButton.click();
+    }
+
+    public void changeBackgroundColor( String color ) {
+        WebElement bgColorTextField = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(bgColorTextFieldLocator));
+        WebElement setBgColorBtn = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(btnSetBgColorLocator));
+
+        bgColorTextField.sendKeys(color);
+        setBgColorBtn.click();
+    }
+
+    public void clearBackgroundColor(){
+        WebElement bgColorTextField = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(bgColorTextFieldLocator));
+        WebElement setBgColorBtn = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(btnSetBgColorLocator));
+
+        bgColorTextField.clear();
+        setBgColorBtn.click();
+    }
+
+    public String getBackgroundColor() {
+        WebElement formToColorize = (new WebDriverWait(driver,Duration.ofSeconds(5)))
+                .until(ExpectedConditions.visibilityOfElementLocated(formToColorizeLocator));
+        return formToColorize.getAttribute("style");
     }
 
 }
