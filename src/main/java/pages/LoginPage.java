@@ -23,9 +23,9 @@ public class LoginPage {
      * Performs a login using the provided username and password
      */
     public void login(String username, String password) {
-        WebElement usernameField = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement usernameField = new WebDriverWait(driver, PageUtil.WAIT_TIME)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
-        WebElement passwordField = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement passwordField = new WebDriverWait(driver, PageUtil.WAIT_TIME)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
 
         usernameField.sendKeys(username);
@@ -34,7 +34,7 @@ public class LoginPage {
         WebElement loginButton = driver.findElement(By.name("login"));
         loginButton.click();
 
-        String welcomeMsg = new WebDriverWait(driver, Duration.ofSeconds(5))
+        String welcomeMsg = new WebDriverWait(driver, PageUtil.WAIT_TIME)
                 .until(ExpectedConditions.visibilityOfElementLocated(By.id("welcomeMsg"))).getText();
         Assert.assertTrue(welcomeMsg.contains("Welcome to the Main page!"), "Log in failed!");
     }

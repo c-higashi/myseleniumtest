@@ -35,7 +35,7 @@ public class MainPage {
      * @see #getDoTwoButtonLocator()
      */
     public boolean doButtonDisabled(By doButtonLocator) {
-        WebElement doButton = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement doButton = new WebDriverWait(driver, PageUtil.WAIT_TIME)
                 .until(ExpectedConditions.visibilityOfElementLocated(doButtonLocator));
         String doOneButtonDisabled = doButton.getAttribute("disabled");
         return doOneButtonDisabled != null && !doOneButtonDisabled.trim().isEmpty();
@@ -48,7 +48,7 @@ public class MainPage {
      * @see #getDoTwoButtonLocator()
      */
     public void clickDoButton(By doButtonLocator) {
-        WebElement doButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
+        WebElement doButton = (new WebDriverWait(driver, PageUtil.WAIT_TIME))
                 .until(ExpectedConditions.visibilityOfElementLocated(doButtonLocator));
         doButton.click();
     }
@@ -71,7 +71,7 @@ public class MainPage {
      * Returns the font size of the element affected by the font size buttons.
      */
     public String getFontSizeAttribute() {
-        WebElement textFontSize = (new WebDriverWait(driver, Duration.ofSeconds(5)))
+        WebElement textFontSize = (new WebDriverWait(driver, PageUtil.WAIT_TIME))
                 .until(ExpectedConditions.visibilityOfElementLocated(textFontSizeLocator));
         return textFontSize.getAttribute("style");
     }
@@ -83,7 +83,7 @@ public class MainPage {
      * @see #getDecreaseFontSizeButtonLocator()
      */
     public void changeFontSize(By changeFontSizeButtonLocator) {
-        WebElement changeFontSizeButton = (new WebDriverWait(driver, Duration.ofSeconds(5)))
+        WebElement changeFontSizeButton = (new WebDriverWait(driver, PageUtil.WAIT_TIME))
                 .until(ExpectedConditions.visibilityOfElementLocated(changeFontSizeButtonLocator));
         changeFontSizeButton.click();
     }
@@ -106,9 +106,9 @@ public class MainPage {
      * Sets the "SET BACKGROUND COLOR" form to the provided color.
      */
     public void changeBackgroundColor(String color) {
-        WebElement bgColorTextField = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement bgColorTextField = new WebDriverWait(driver, PageUtil.WAIT_TIME)
                 .until(ExpectedConditions.visibilityOfElementLocated(bgColorTextFieldLocator));
-        WebElement setBgColorBtn = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement setBgColorBtn = new WebDriverWait(driver, PageUtil.WAIT_TIME)
                 .until(ExpectedConditions.visibilityOfElementLocated(btnSetBgColorLocator));
 
         bgColorTextField.sendKeys(color);
@@ -119,9 +119,9 @@ public class MainPage {
      * Clears the background color of the "SET BACKGROUND COLOR" form.
      */
     public void clearBackgroundColor() {
-        WebElement bgColorTextField = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement bgColorTextField = new WebDriverWait(driver, PageUtil.WAIT_TIME)
                 .until(ExpectedConditions.visibilityOfElementLocated(bgColorTextFieldLocator));
-        WebElement setBgColorBtn = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement setBgColorBtn = new WebDriverWait(driver, PageUtil.WAIT_TIME)
                 .until(ExpectedConditions.visibilityOfElementLocated(btnSetBgColorLocator));
 
         bgColorTextField.clear();
@@ -132,7 +132,7 @@ public class MainPage {
      * Returns the background color of the "SET BACKGROUND COLOR" form.
      */
     public String getBackgroundColor() {
-        WebElement formToColorize = new WebDriverWait(driver, Duration.ofSeconds(5))
+        WebElement formToColorize = new WebDriverWait(driver, PageUtil.WAIT_TIME)
                 .until(ExpectedConditions.visibilityOfElementLocated(formToColorizeLocator));
         return formToColorize.getAttribute("style");
     }
