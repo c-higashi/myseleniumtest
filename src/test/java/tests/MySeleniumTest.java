@@ -5,10 +5,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MainPage;
-import utils.ReadConfigFiles;
+import utils.Configuration;
 import utils.SeleniumAbstractTest;
-
-import java.util.Properties;
 
 /**
  * Example Selenium test that asserts functionality of the website https://yltrue.com/automation
@@ -23,15 +21,18 @@ public class MySeleniumTest extends SeleniumAbstractTest {
      */
     @BeforeMethod
     void beforeMethod() {
-        ReadConfigFiles readConfigFiles = new ReadConfigFiles();
-        Properties properties = readConfigFiles.readConfigProperties("config.properties");
+        Configuration config = new Configuration("config.properties");
 
-        driver.get(properties.getProperty("exampleweburl"));
+        String url = config.getProperty("exampleweburl");
+        String username = config.getProperty("username");
+        String password = config.getProperty("password");
+
+        driver.get(url);
 
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
 
-        loginPage.login(properties.getProperty("username"), properties.getProperty("password"));
+        loginPage.login(username, password);
     }
 
     /**

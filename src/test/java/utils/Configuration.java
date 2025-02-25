@@ -8,14 +8,25 @@ import java.util.Properties;
 /**
  * Utility for reading in a configuration properties file
  */
-public class ReadConfigFiles {
-    public Properties readConfigProperties(String fileName) {
+public class Configuration {
+
+    private final Properties properties;
+
+    public Configuration(String fileName) {
+
         try (FileInputStream fis = new FileInputStream(fileName)) {
-            Properties properties = new Properties();
+            this.properties = new Properties();
             properties.load(fis);
-            return properties;
         } catch (IOException e) {
             throw new UncheckedIOException("Failed to read the configuration properties file: " + fileName, e);
         }
+    }
+
+    public String getProperty( String key ) {
+        String value = this.properties.getProperty(key);
+        if( value == null ) {
+            throw new RuntimeException("Unknown property: " + value);
+        }
+        return value;
     }
 }
