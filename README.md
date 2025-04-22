@@ -14,6 +14,7 @@ So I created a one-stop shop Java Selenium project that you can just clone and s
 ### Prerequisites
 * Git and Java are installed.
 
+### Installation and running the tests
 1. Run the following to download the project:
 ```bash
 git clone https://github.com/c-higashi/myseleniumtest.git
